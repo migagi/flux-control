@@ -1,0 +1,23 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: migagi-dev
+  namespace: migagi-dev
+spec:
+  interval: 1m
+  url: https://github.com/migagi/flux
+  ref:
+    branch: keda
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: migagi-dev
+  namespace: migagi-dev
+spec:
+  serviceAccountName: migagi-dev
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: migagi-dev
+  prune: true
