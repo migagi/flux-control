@@ -3,6 +3,7 @@ kind: Kustomization
 metadata:
   name: migagi-dev-com-tenant
   namespace: flux-system
+
 spec:
   interval: 1m
   path: ./tenants/migagi-dev
